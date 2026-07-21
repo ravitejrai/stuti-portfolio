@@ -44,9 +44,10 @@ export const caseStudies: CaseStudy[] = [
     tagline:
       "Rebuilding a grants-discovery platform with an AI-accelerated design pipeline and accessibility at its core.",
     cover: { from: "#0F172A", to: "#4F46E5" },
-    coverImage: "/case-studies/grantigo/landing-on-grant-page.png",
+    coverImage: "/case-studies/grantigo/grantigo-cover.png",
     hideWireframes: true,
     gallery: [
+      { src: "/case-studies/grantigo/landing-on-grant-page.png", alt: "Grant landing page" },
       { src: "/case-studies/grantigo/ai-match-analysis.png", alt: "AI match analysis surfacing relevant grants" },
       { src: "/case-studies/grantigo/guided-qualification-questions.png", alt: "Guided qualification questions flow" },
       { src: "/case-studies/grantigo/personalized-roadmap.png", alt: "Personalized funding roadmap" },
@@ -127,11 +128,12 @@ export const caseStudies: CaseStudy[] = [
     tagline:
       "A privacy-first collaboration dashboard, redesigned around the moments that matter: sharing, reviewing, and trust.",
     cover: { from: "#111827", to: "#10B981" },
-    coverImage: "/case-studies/pryvx/pryvx-dashboard.png",
+    coverImage: "/case-studies/pryvx/pryvx-cover.png",
     wireframeImages: [
       { src: "/case-studies/pryvx/pryvx-dashboard-wireframe.png", alt: "Dashboard wireframe" },
     ],
     gallery: [
+      { src: "/case-studies/pryvx/pryvx-dashboard.png", alt: "Redesigned dashboard" },
       { src: "/case-studies/pryvx/pryvx-clean-room.png", alt: "Collaboration clean room" },
       { src: "/case-studies/pryvx/pryvx-overview.png", alt: "Pryvx product overview" },
     ],
@@ -211,9 +213,7 @@ export const caseStudies: CaseStudy[] = [
     tagline:
       "Reframing onboarding from a checklist into a first lesson, and cutting time-to-value by a third.",
     cover: { from: "#1E293B", to: "#F59E0B" },
-    coverImage: "/case-studies/chemx/chemx-4.png",
-    coverContain: true,
-    coverAspect: "8 / 7",
+    coverImage: "/case-studies/chemx/chemx-cover.png",
     gallery: [
       { src: "/case-studies/chemx/chemx-2.png", alt: "CHEMX onboarding screen" },
       { src: "/case-studies/chemx/chemx-3.png", alt: "CHEMX lesson screen" },
