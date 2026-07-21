@@ -19,7 +19,7 @@ export function FeaturedWork() {
               Selected Work · 2021 — 2026
             </p>
             <h2 className="font-serif text-4xl md:text-6xl text-ink max-w-[20ch] leading-[1.05]">
-              Five projects, five lessons in <em className="italic">restraint</em>.
+              Four projects, four lessons in <em className="italic">restraint</em>.
             </h2>
           </div>
           <Link

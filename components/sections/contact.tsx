@@ -61,6 +61,14 @@ export function Contact() {
               {copied ? <Check size={14} /> : <Copy size={14} />}
               {copied ? "Copied" : "Copy email"}
             </button>
+            {profile.phone && (
+              <a
+                href={`tel:${profile.phone.replace(/\s+/g, "")}`}
+                className="inline-flex items-center gap-2 rounded-full border border-line text-ink px-5 py-3.5 text-sm font-medium hover:border-ink/40 transition-colors"
+              >
+                {profile.phone}
+              </a>
+            )}
           </div>
 
           <div className="mt-16 grid sm:grid-cols-3 gap-6 pt-8 border-t border-line">

@@ -48,8 +48,8 @@ export function About() {
             <Detail label="Based in" value="Stockholm, SE" />
             <Detail label="Languages" value="English, Hindi" />
             <Detail label="Industries" value="SaaS, EdTech, FinTech" />
-            <Detail label="Outside work" value="Cycling, ceramics, books" />
-            <Detail label="Coffee" value="Filter, oat, no sugar" />
+            <Detail label="Outside work" value="Cycling, books, time with my daughter" />
+            <Detail label="Tea" value="Chai" />
           </div>
         </motion.div>
       </div>

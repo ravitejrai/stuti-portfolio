@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { skillsGroups, tools } from "@/lib/profile";
+import { skillsGroups, tools, languages } from "@/lib/profile";
 
 const ease = [0.22, 1, 0.36, 1];
 
@@ -61,6 +61,23 @@ export function Skills() {
               ))}
             </div>
           </div>
+        </div>
+
+        {/* Languages */}
+        <div className="mt-16 flex flex-col sm:flex-row sm:items-center gap-4 justify-center">
+          <p className="text-xs uppercase tracking-widest text-ink-subtle">
+            Languages
+          </p>
+          <ul className="flex flex-wrap gap-2 justify-center">
+            {languages.map((lang) => (
+              <li
+                key={lang}
+                className="text-sm text-ink border border-line rounded-full px-4 py-1.5 bg-canvas"
+              >
+                {lang}
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>

@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowDownToLine, Mail, MapPin } from "lucide-react";
 import { profile } from "@/lib/profile";
@@ -97,17 +98,24 @@ export function Hero() {
           className="mt-20 grid gap-6 md:grid-cols-12 items-end"
         >
           <div className="md:col-span-5 lg:col-span-4">
-            <div className="aspect-[4/5] rounded-2xl border border-line bg-canvas-raised relative overflow-hidden">
-              {/* Placeholder portrait — swap with /public/portrait.jpg */}
+            <div className="group aspect-[4/5] rounded-2xl border border-line bg-canvas-raised relative overflow-hidden">
+              <Image
+                src="/portrait.jpg"
+                alt={`${profile.name}, ${profile.role}`}
+                fill
+                priority
+                sizes="(max-width: 768px) 100vw, 33vw"
+                className="object-cover object-[center_20%] grayscale-[0.35] contrast-[1.03] saturate-[0.9] transition-all duration-700 ease-out group-hover:grayscale-0 group-hover:saturate-100 group-hover:scale-[1.02]"
+              />
+              {/* Warm tone + depth to blend with the theme */}
               <div
                 aria-hidden
-                className="absolute inset-0 bg-gradient-to-br from-canvas-sunken to-canvas-raised"
+                className="absolute inset-0 bg-gradient-to-t from-canvas/40 via-transparent to-transparent mix-blend-multiply"
               />
-              <div className="absolute inset-0 flex items-end p-5">
-                <div className="text-xs text-ink-subtle font-mono">
-                  portrait.jpg · 4:5 · replace in /public
-                </div>
-              </div>
+              <div
+                aria-hidden
+                className="absolute inset-0 ring-1 ring-inset ring-ink/5 rounded-2xl"
+              />
             </div>
           </div>
 

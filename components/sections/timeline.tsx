@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { experience } from "@/lib/profile";
+import { experience, education } from "@/lib/profile";
 
 const ease = [0.22, 1, 0.36, 1];
 
@@ -65,6 +65,34 @@ export function Timeline() {
             </motion.li>
           ))}
         </ol>
+
+        {/* Education */}
+        <div className="mt-20 pt-12 border-t border-line">
+          <p className="text-xs uppercase tracking-widest text-ink-subtle mb-8">
+            Education
+          </p>
+          <div className="grid gap-px sm:grid-cols-2 bg-line border border-line rounded-2xl overflow-hidden">
+            {education.map((ed, i) => (
+              <motion.div
+                key={ed.school}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.5, ease, delay: i * 0.06 }}
+                className="bg-canvas p-6 md:p-8"
+              >
+                <p className="font-mono text-xs text-ink-subtle uppercase tracking-wider">
+                  {ed.period}
+                </p>
+                <h3 className="mt-3 font-serif text-xl md:text-2xl text-ink leading-tight">
+                  {ed.program}
+                </h3>
+                <p className="mt-2 text-ink-muted">{ed.school}</p>
+                <p className="mt-1 text-xs text-ink-subtle">{ed.location}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );

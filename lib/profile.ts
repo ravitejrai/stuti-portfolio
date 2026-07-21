@@ -3,7 +3,7 @@ export const profile = {
   role: "UX Designer",
   location: "Stockholm, Sweden",
   email: "stuti.gautam90@gmail.com",
-  phone: null as string | null,
+  phone: "+46 73 996 0349" as string | null,
   resumeUrl: "/stuti-gautam-resume.pdf",
   socials: [
     { label: "LinkedIn", href: "https://www.linkedin.com/in/stuti-gautam-948b9776" },
@@ -96,7 +96,7 @@ export const skillsGroups = [
       "Interaction Design",
       "Prototyping",
       "Accessibility (WCAG)",
-      "Motion Design",
+      "Typography & Color Theory",
     ],
   },
   {
@@ -105,20 +105,35 @@ export const skillsGroups = [
   },
   {
     title: "Technology",
-    items: ["AI-Assisted Design", "WordPress", "HTML / CSS", "Developer Collaboration"],
+    items: ["AI-Assisted Design", "AI-Powered Design Workflows", "WordPress", "Developer Collaboration"],
   },
 ];
 
 export const tools = [
   "Figma",
   "Adobe XD",
+  "InDesign",
   "Photoshop",
   "Illustrator",
-  "InDesign",
   "WordPress",
-  "Framer",
-  "Notion",
 ];
+
+export const education = [
+  {
+    program: "Graphic Design & Typography",
+    school: "Linnaeus University",
+    period: "2023 — 2024",
+    location: "Sweden",
+  },
+  {
+    program: "Computer Science & Engineering",
+    school: "Biju Patnaik University of Technology",
+    period: "2009 — 2013",
+    location: "India",
+  },
+];
+
+export const languages = ["English", "Hindi (Native)"];
 
 export const processSteps = [
   {
