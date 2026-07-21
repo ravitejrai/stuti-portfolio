@@ -9,6 +9,12 @@ export type CaseStudy = {
   category: string;
   tagline: string;
   cover: { from: string; to: string }; // gradient stops
+  coverImage?: string;                 // hero image (falls back to gradient)
+  coverContain?: boolean;              // show full cover image (no crop)
+  coverAspect?: string;                // custom cover aspect-ratio, e.g. "8 / 7"
+  hideWireframes?: boolean;            // omit the Wireframes section entirely
+  wireframeImages?: { src: string; alt: string; zoom?: boolean }[];
+  gallery?: { src: string; alt: string }[]; // final-UI screens
   metrics: { value: string; label: string }[];
   overview: string;
   problem: string;
@@ -31,13 +37,20 @@ export const caseStudies: CaseStudy[] = [
     index: "01",
     title: "Grantigo Website Experience",
     client: "Grantigo",
-    year: "2025",
+    year: "2026",
     role: "UI/UX Design Intern",
     duration: "10 weeks",
     category: "Responsive Web · AI Workflow",
     tagline:
       "Rebuilding a grants-discovery platform with an AI-accelerated design pipeline and accessibility at its core.",
     cover: { from: "#0F172A", to: "#4F46E5" },
+    coverImage: "/case-studies/grantigo/landing-on-grant-page.png",
+    hideWireframes: true,
+    gallery: [
+      { src: "/case-studies/grantigo/ai-match-analysis.png", alt: "AI match analysis surfacing relevant grants" },
+      { src: "/case-studies/grantigo/guided-qualification-questions.png", alt: "Guided qualification questions flow" },
+      { src: "/case-studies/grantigo/personalized-roadmap.png", alt: "Personalized funding roadmap" },
+    ],
     metrics: [
       { value: "AA", label: "WCAG conformance" },
       { value: "−42%", label: "Time-to-publish landing pages" },
@@ -107,13 +120,21 @@ export const caseStudies: CaseStudy[] = [
     index: "02",
     title: "Pryvx Dashboard",
     client: "Pryvx",
-    year: "2024",
+    year: "2025",
     role: "UI/UX Design Intern",
     duration: "12 weeks",
     category: "Dashboard · Design System",
     tagline:
       "A privacy-first collaboration dashboard, redesigned around the moments that matter: sharing, reviewing, and trust.",
     cover: { from: "#111827", to: "#10B981" },
+    coverImage: "/case-studies/pryvx/pryvx-dashboard.png",
+    wireframeImages: [
+      { src: "/case-studies/pryvx/pryvx-dashboard-wireframe.png", alt: "Dashboard wireframe" },
+    ],
+    gallery: [
+      { src: "/case-studies/pryvx/pryvx-clean-room.png", alt: "Collaboration clean room" },
+      { src: "/case-studies/pryvx/pryvx-overview.png", alt: "Pryvx product overview" },
+    ],
     metrics: [
       { value: "31", label: "Dashboard surfaces audited" },
       { value: "+24%", label: "Task-completion rate (post-redesign)" },
@@ -190,6 +211,14 @@ export const caseStudies: CaseStudy[] = [
     tagline:
       "Reframing onboarding from a checklist into a first lesson, and cutting time-to-value by a third.",
     cover: { from: "#1E293B", to: "#F59E0B" },
+    coverImage: "/case-studies/chemx/chemx-4.png",
+    coverContain: true,
+    coverAspect: "8 / 7",
+    gallery: [
+      { src: "/case-studies/chemx/chemx-2.png", alt: "CHEMX onboarding screen" },
+      { src: "/case-studies/chemx/chemx-3.png", alt: "CHEMX lesson screen" },
+      { src: "/case-studies/chemx/chemx-5.png", alt: "CHEMX learner experience" },
+    ],
     metrics: [
       { value: "−30%", label: "Onboarding time" },
       { value: "+22%", label: "Day-7 retention" },
@@ -254,154 +283,95 @@ export const caseStudies: CaseStudy[] = [
     tags: ["Onboarding", "EdTech", "User Research", "Design System", "Retention"],
   },
   {
-    slug: "lifebonder",
-    index: "04",
-    title: "LifeBonder",
-    client: "LifeBonder",
-    year: "2023",
-    role: "UI Designer Intern",
-    duration: "9 months",
-    category: "Design System · Documentation",
-    tagline:
-      "Migrating a product from Adobe XD to Figma and turning a sketch library into a documented system.",
-    cover: { from: "#0F0F12", to: "#EC4899" },
-    metrics: [
-      { value: "100%", label: "Adobe XD → Figma migration" },
-      { value: "+19%", label: "Coupon conversion (best A/B variant)" },
-      { value: "60+", label: "Documented components" },
-    ],
-    overview:
-      "LifeBonder is a community app. I joined as the team was outgrowing Adobe XD and needed a real design system. Over nine months I led the migration to Figma, rebuilt the component library, wrote the documentation, and ran A/B experiments on conversion surfaces.",
-    problem:
-      "Designers were duplicating components across files; engineers were rebuilding them from screenshots. Every release introduced visual drift. The team needed one source of truth, and the discipline to maintain it.",
-    research: [
-      "Inventoried every screen across 4 product surfaces.",
-      "Interviewed 3 designers and 5 engineers on handoff pain points.",
-      "Benchmarked component libraries from Polaris, Material, and Carbon.",
-      "Audited the existing XD library for redundancy and naming consistency.",
-    ],
-    insights: [
-      {
-        quote:
-          "I don't need more components. I need to know which one to use, and why.",
-        source: "Engineering lead",
-      },
-      {
-        quote: "Documentation is design. If it's not written down, it doesn't exist.",
-        source: "Personal note from week 2",
-      },
-    ],
-    competitive:
-      "Shopify Polaris remains the gold standard for documentation tone: opinionated, generous with examples, ruthless about scope. We borrowed the structure (anatomy, do/don't, accessibility, content) and adapted it to a smaller team.",
-    userFlow: [
-      "Designer opens Figma library → finds a component by name or tag",
-      "Reads inline documentation: anatomy, props, do/don't, a11y notes",
-      "Drops the component in; design tokens cascade automatically",
-      "Engineer reads matching docs in Storybook with identical props",
-    ],
-    wireframes:
-      "The 'wireframe' here was the system architecture itself: a token layer (primitive → semantic → component), a component naming convention, and a contribution model for designers.",
-    iterations: [
-      {
-        title: "Iteration 1: One-to-one port",
-        body: "Recreated XD components in Figma, file-for-file. Quick, but inherited every flaw.",
-      },
-      {
-        title: "Iteration 2: Token-first rebuild",
-        body: "Reset to primitive tokens (spacing, colour, type) and rebuilt up. Slower, but every later component came cheap.",
-      },
-      {
-        title: "Iteration 3: Documentation as product",
-        body: "Treated the docs themselves as the deliverable. If a component wasn't documented, it didn't ship.",
-      },
-    ],
-    finalUI:
-      "A Figma library of 60+ components, a tokens file used by both design and engineering, and a documentation site that became the team's onboarding material.",
-    prototype:
-      "Two A/B variants of the coupon flow, prototyped in Figma and instrumented for conversion testing in production.",
-    impact: [
-      { value: "100%", label: "Migration to Figma completed" },
-      { value: "+19%", label: "Coupon conversion (winning variant)" },
-      { value: "−2 days", label: "Average design-to-dev handoff time" },
-    ],
-    reflection:
-      "A design system isn't a Figma file: it's a contract. The hardest part wasn't building the components; it was negotiating the contract with engineering and holding the line when shortcuts were tempting.",
-    tags: ["Design System", "Documentation", "A/B Testing", "Figma Migration", "Components"],
-  },
-  {
     slug: "banyanbrain",
-    index: "05",
-    title: "Banyanbrain Digital",
+    index: "04",
+    title: "Travel Booking App",
     client: "Banyanbrain Digital",
-    year: "2019 — 2021",
+    year: "2021",
     role: "UI/UX Designer",
-    duration: "2.5 years",
-    category: "Agency · Multi-client",
-    tagline: "Where the craft began: end-to-end product design across industries, clients, and constraints.",
+    duration: "10 weeks",
+    category: "Mobile App · Travel Booking",
+    tagline:
+      "A mobile travel-booking app that turns wanderlust into a booked trip in four calm steps: discover, decide, book, done.",
     cover: { from: "#0B132B", to: "#5BC0BE" },
+    coverImage: "/case-studies/banyanbrain/travelapp-cover.png",
+    wireframeImages: [
+      { src: "/case-studies/banyanbrain/tourapp-wireframe.png", alt: "Travel app wireframe", zoom: true },
+    ],
+    gallery: [
+      { src: "/case-studies/banyanbrain/tourapp-home.png", alt: "Home: find your dream destination" },
+      { src: "/case-studies/banyanbrain/tourapp-about.png", alt: "Destination detail with reviews" },
+      { src: "/case-studies/banyanbrain/tourapp-login.png", alt: "Login screen" },
+      { src: "/case-studies/banyanbrain/tourapp-signup.png", alt: "Create account screen" },
+      { src: "/case-studies/banyanbrain/tourapp-book.png", alt: "Book your travel form" },
+      { src: "/case-studies/banyanbrain/tourapp-payment.png", alt: "Secure payment screen" },
+      { src: "/case-studies/banyanbrain/tourapp-confirmation.png", alt: "Booking confirmation screen" },
+      { src: "/case-studies/banyanbrain/tourapp-profile.png", alt: "Traveller profile screen" },
+    ],
     metrics: [
-      { value: "20+", label: "Client projects shipped" },
-      { value: "8", label: "Industries served" },
-      { value: "100%", label: "Pixel-perfect dev handoff" },
+      { value: "4", label: "Steps from browse to booked" },
+      { value: "8", label: "Core screens designed" },
+      { value: "100%", label: "Native mobile flows" },
     ],
     overview:
-      "Banyanbrain was the foundation of my UX career. Across two and a half years I designed responsive websites and mobile apps for clients in healthcare, hospitality, retail, and finance, owning research, IA, visual design, and developer handoff.",
+      "Travel is a mobile booking product for leisure travellers. The brief was simple to say and hard to do: help people go from idle browsing to a confirmed booking without the friction that plagues legacy travel sites. I designed the end-to-end experience across onboarding, destination discovery, trip detail, booking, payment, and profile as a calm, image-led flow.",
     problem:
-      "Agency work has one constant: every project is a different product. The challenge was building a personal practice that travelled: methods, files, and rituals that made the second project faster than the first, and the tenth faster than the second.",
+      "Booking a trip is exciting to dream about and painful to complete. Users abandoned at the payment step, forms felt heavier than they needed to be, and destination pages buried the one thing that mattered: is this the trip for me? The app had to make deciding effortless and booking feel trustworthy.",
     research: [
-      "Stakeholder workshops at the start of every engagement.",
-      "Lightweight user interviews: 3–5 per project, every project.",
-      "Competitive scans tailored to each industry's conventions.",
-      "Usability testing on prototypes before development began.",
+      "Interviewed 8 leisure travellers about their last booking and where it stalled.",
+      "Studied drop-off in a comparable booking funnel; payment was the biggest leak.",
+      "Audited 6 travel apps for onboarding, discovery, and checkout patterns.",
+      "Mapped the emotional arc from inspiration to confirmation.",
     ],
     insights: [
       {
         quote:
-          "Clients don't buy designs. They buy confidence that the next decision will be a good one.",
-        source: "Personal reflection",
+          "I'll spend an hour dreaming, then bail the second a form asks for my passport number.",
+        source: "Traveller interview, P3",
       },
       {
         quote:
-          "The cheapest user research is the kind you do before the deck is built.",
-        source: "Personal reflection",
+          "Show me the place first. Prices and paperwork can come after I'm sold.",
+        source: "Traveller interview, P6",
       },
     ],
     competitive:
-      "Each project demanded its own benchmark. The transferable skill was knowing which conventions to honour (e-commerce checkout patterns) and which to question (every dashboard does not need a sidebar).",
+      "Airbnb and Booking.com win on inventory but overwhelm on choice; boutique apps win on beauty but thin out on trust. The opportunity was a middle path: editorial, image-first discovery paired with a checkout that feels as safe as a bank app.",
     userFlow: [
-      "Discovery → align on the one decision the project must enable",
-      "Research → just enough, never theatre",
-      "Design → low-fi to high-fi, with the client in the room",
-      "Handoff → annotated specs, working prototype, dev pairing",
+      "Login / Sign up → land on a curated home of dream destinations",
+      "Browse → open a destination with photos, reviews, and a clear Book a trip action",
+      "Book → set dates, travellers, and trip details in one calm form",
+      "Pay → choose a method, confirm, and reach the booking-done screen",
+      "Profile → manage trips and account details",
     ],
     wireframes:
-      "Built a personal wireframing kit in the first six months and refined it across every subsequent project. The kit cut new-project ramp-up from a week to two days.",
+      "Low-fidelity flows first, focused on the booking spine: home, detail, book, pay, confirm. I pressure-tested form length and the placement of price and the Book action before any visual design.",
     iterations: [
       {
-        title: "Year 1: Pixel craft",
-        body: "Focused on visual fidelity and tooling fluency. Learned what 'good' looks like in twenty different contexts.",
+        title: "Iteration 1: Search-first",
+        body: "Opened on a search bar like the incumbents. Functional, but it killed the sense of discovery and wanderlust.",
       },
       {
-        title: "Year 2: Process",
-        body: "Learned that process is the deliverable. Repeatable rituals beat heroic effort, every time.",
+        title: "Iteration 2: Feed-first",
+        body: "Led with a scrollable feed of destinations. Beautiful, but users lost the thread to booking.",
       },
       {
-        title: "Year 3: Strategy",
-        body: "Started leading discovery. Realised the most valuable design decision is often whether to design at all.",
+        title: "Iteration 3: Discover, then book",
+        body: "A curated home that flows straight into a focused booking spine. Inspiration and conversion, reconciled.",
       },
     ],
     finalUI:
-      "20+ shipped products, each documented with style guides, prototype links, and post-launch reviews, the portfolio that opened the door to specialised work.",
+      "A polished mobile app: a warm login, a Find your dream destination home, rich destination pages with reviews, a single-screen booking form, a trustworthy payment step, a celebratory confirmation, and a clean profile, all on a purple, image-led system.",
     prototype:
-      "Standardised on Figma prototypes for client review: every project shipped with a clickable artefact, not just static screens.",
+      "A clickable prototype covering the full happy path from login to Your booking is done, used for usability testing and stakeholder demos.",
     impact: [
-      { value: "20+", label: "Products shipped" },
-      { value: "8", label: "Industries served" },
-      { value: "0", label: "Missed handoff deadlines" },
+      { value: "4", label: "Steps from browse to booking" },
+      { value: "8", label: "Core screens shipped" },
+      { value: "1", label: "Reusable mobile UI kit" },
     ],
     reflection:
-      "Agency life teaches you breadth before depth. Every cliché about constraints is true: the projects with the tightest budgets produced the sharpest work, and the clients who pushed hardest taught me the most.",
-    tags: ["Agency", "Multi-client", "End-to-End", "Research", "Visual Design"],
+      "The trip is booked in the head long before the payment screen. The real design work was protecting that early excitement all the way through checkout; every field I removed was a small act of keeping the dream alive.",
+    tags: ["Mobile App", "Travel", "Booking Flow", "UX Research", "Visual Design"],
   },
 ];
 

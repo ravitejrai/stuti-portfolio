@@ -7,12 +7,15 @@ export function CaseSection({
   title,
   children,
   last,
+  hidden,
 }: {
   number: string;
   title: string;
   children: React.ReactNode;
   last?: boolean;
+  hidden?: boolean;
 }) {
+  if (hidden) return null;
   return (
     <Reveal>
       <section

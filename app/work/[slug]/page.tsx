@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import type { Metadata } from "next";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { caseStudies, getCaseStudy } from "@/lib/case-studies";
@@ -37,6 +38,10 @@ export default async function CaseStudyPage({
 
   const idx = caseStudies.findIndex((x) => x.slug === c.slug);
   const next = caseStudies[(idx + 1) % caseStudies.length];
+
+  // Keep section numbers continuous when the Wireframes section is hidden.
+  const sec = (num: number) =>
+    String(c.hideWireframes && num > 7 ? num - 1 : num).padStart(2, "0");
 
   return (
     <article className="pt-28 pb-0">
@@ -113,32 +118,56 @@ export default async function CaseStudyPage({
           </ol>
         </CaseSection>
 
-        <CaseSection number="07" title="Wireframes">
+        <CaseSection number="07" title="Wireframes" hidden={c.hideWireframes}>
           <p className="text-lg text-ink leading-relaxed">{c.wireframes}</p>
-          <div className="mt-8 grid gap-4 md:grid-cols-3">
-            {[1, 2, 3].map((n) => (
-              <div
-                key={n}
-                className="aspect-[4/3] rounded-xl border border-line bg-canvas-sunken relative overflow-hidden"
-              >
+          {c.wireframeImages && c.wireframeImages.length > 0 ? (
+            <div className="mt-8 space-y-6">
+              {c.wireframeImages.map((img) => (
                 <div
-                  aria-hidden
-                  className="absolute inset-0 opacity-20"
-                  style={{
-                    backgroundImage:
-                      "linear-gradient(0deg, transparent 95%, rgb(var(--ink-subtle)) 95%), linear-gradient(90deg, transparent 95%, rgb(var(--ink-subtle)) 95%)",
-                    backgroundSize: "24px 24px",
-                  }}
-                />
-                <div className="absolute bottom-3 left-3 text-[11px] font-mono text-ink-subtle">
-                  wireframe-0{n}.fig
+                  key={img.src}
+                  className="rounded-xl border border-line bg-canvas-sunken overflow-hidden"
+                >
+                  <Image
+                    src={img.src}
+                    alt={img.alt}
+                    width={1600}
+                    height={1000}
+                    sizes="(max-width: 1280px) 100vw, 1280px"
+                    className={
+                      img.zoom
+                        ? "w-full h-auto scale-110 origin-center"
+                        : "w-full h-auto"
+                    }
+                  />
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          ) : (
+            <div className="mt-8 grid gap-4 md:grid-cols-3">
+              {[1, 2, 3].map((n) => (
+                <div
+                  key={n}
+                  className="aspect-[4/3] rounded-xl border border-line bg-canvas-sunken relative overflow-hidden"
+                >
+                  <div
+                    aria-hidden
+                    className="absolute inset-0 opacity-20"
+                    style={{
+                      backgroundImage:
+                        "linear-gradient(0deg, transparent 95%, rgb(var(--ink-subtle)) 95%), linear-gradient(90deg, transparent 95%, rgb(var(--ink-subtle)) 95%)",
+                      backgroundSize: "24px 24px",
+                    }}
+                  />
+                  <div className="absolute bottom-3 left-3 text-[11px] font-mono text-ink-subtle">
+                    wireframe-0{n}.fig
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </CaseSection>
 
-        <CaseSection number="08" title="Design Iterations">
+        <CaseSection number={sec(8)} title="Design Iterations">
           <div className="space-y-px bg-line border border-line rounded-2xl overflow-hidden">
             {c.iterations.map((it) => (
               <div key={it.title} className="bg-canvas-raised p-6 md:p-8">
@@ -149,26 +178,46 @@ export default async function CaseStudyPage({
           </div>
         </CaseSection>
 
-        <CaseSection number="09" title="Final UI">
+        <CaseSection number={sec(9)} title="Final UI">
           <p className="text-lg text-ink leading-relaxed">{c.finalUI}</p>
-          <div
-            className="mt-8 aspect-[16/10] rounded-2xl border border-line relative overflow-hidden"
-            style={{
-              background: `linear-gradient(135deg, ${c.cover.from}, ${c.cover.to})`,
-            }}
-          >
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.2),transparent_60%)]" />
-            <div className="absolute bottom-4 left-5 text-white/80 font-mono text-xs">
-              {c.client} · final-ui.fig
+          {c.gallery && c.gallery.length > 0 ? (
+            <div className="mt-8 grid gap-4 sm:grid-cols-2">
+              {c.gallery.map((img) => (
+                <div
+                  key={img.src}
+                  className="rounded-2xl border border-line bg-canvas-sunken overflow-hidden"
+                >
+                  <Image
+                    src={img.src}
+                    alt={img.alt}
+                    width={1200}
+                    height={900}
+                    sizes="(max-width: 640px) 100vw, 640px"
+                    className="w-full h-auto"
+                  />
+                </div>
+              ))}
             </div>
-          </div>
+          ) : (
+            <div
+              className="mt-8 aspect-[16/10] rounded-2xl border border-line relative overflow-hidden"
+              style={{
+                background: `linear-gradient(135deg, ${c.cover.from}, ${c.cover.to})`,
+              }}
+            >
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.2),transparent_60%)]" />
+              <div className="absolute bottom-4 left-5 text-white/80 font-mono text-xs">
+                {c.client} · final-ui.fig
+              </div>
+            </div>
+          )}
         </CaseSection>
 
-        <CaseSection number="10" title="Prototype">
+        <CaseSection number={sec(10)} title="Prototype">
           <p className="text-lg text-ink leading-relaxed">{c.prototype}</p>
         </CaseSection>
 
-        <CaseSection number="11" title="Impact">
+        <CaseSection number={sec(11)} title="Impact">
           <div className="grid gap-px sm:grid-cols-3 bg-line border border-line rounded-2xl overflow-hidden">
             {c.impact.map((m) => (
               <div key={m.label} className="bg-canvas-raised p-8">
@@ -181,7 +230,7 @@ export default async function CaseStudyPage({
           </div>
         </CaseSection>
 
-        <CaseSection number="12" title="Reflection" last>
+        <CaseSection number={sec(12)} title="Reflection" last>
           <p className="text-xl md:text-2xl font-serif italic text-ink leading-relaxed">
             {c.reflection}
           </p>

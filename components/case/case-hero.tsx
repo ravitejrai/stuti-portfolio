@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import type { CaseStudy } from "@/lib/case-studies";
 
 const ease = [0.22, 1, 0.36, 1];
@@ -53,20 +54,34 @@ export function CaseHero({ c }: { c: CaseStudy }) {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.9, ease, delay: 0.3 }}
         className="mt-16 relative aspect-[16/9] md:aspect-[16/7] rounded-2xl overflow-hidden border border-line"
+        style={c.coverAspect ? { aspectRatio: c.coverAspect } : undefined}
       >
-        <div
-          className="absolute inset-0"
-          style={{
-            background: `linear-gradient(135deg, ${c.cover.from}, ${c.cover.to})`,
-          }}
-        />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.2),transparent_60%)]" />
-        <div className="absolute inset-0 flex items-end p-8">
-          <div className="flex w-full justify-between items-end text-white/80 font-mono text-xs">
-            <span>{c.client.toLowerCase()}.case-study</span>
-            <span>{c.year}</span>
-          </div>
-        </div>
+        {c.coverImage ? (
+          <Image
+            src={c.coverImage}
+            alt={`${c.title} cover`}
+            fill
+            priority
+            sizes="(max-width: 1280px) 100vw, 1280px"
+            className={c.coverContain ? "object-contain bg-canvas-sunken" : "object-cover"}
+          />
+        ) : (
+          <>
+            <div
+              className="absolute inset-0"
+              style={{
+                background: `linear-gradient(135deg, ${c.cover.from}, ${c.cover.to})`,
+              }}
+            />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.2),transparent_60%)]" />
+            <div className="absolute inset-0 flex items-end p-8">
+              <div className="flex w-full justify-between items-end text-white/80 font-mono text-xs">
+                <span>{c.client.toLowerCase()}.case-study</span>
+                <span>{c.year}</span>
+              </div>
+            </div>
+          </>
+        )}
       </motion.div>
 
       {/* Tags */}

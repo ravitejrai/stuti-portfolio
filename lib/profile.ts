@@ -7,8 +7,7 @@ export const profile = {
   resumeUrl: "/stuti-gautam-resume.pdf",
   socials: [
     { label: "LinkedIn", href: "https://www.linkedin.com/in/stuti-gautam-948b9776" },
-    { label: "Dribbble", href: "https://dribbble.com/stutigautam" },
-    { label: "Read.cv", href: "https://read.cv/stutigautam" },
+    { label: "Dribbble", href: "https://dribbble.com/stuti90" },
     { label: "Email", href: "mailto:stuti.gautam90@gmail.com" },
   ],
   headline:
@@ -21,7 +20,7 @@ export const experience = [
   {
     company: "Grantigo",
     role: "UI/UX Design Intern",
-    period: "2025 — Present",
+    period: "Jan 2026 — May 2026",
     location: "Stockholm, Sweden",
     summary:
       "Leading the redesign of a grants-discovery platform: accessibility, performance, and an AI-accelerated production pipeline.",
@@ -34,8 +33,8 @@ export const experience = [
   {
     company: "Pryvx",
     role: "UI/UX Design Intern",
-    period: "2024",
-    location: "Remote",
+    period: "Jan 2025 — June 2025",
+    location: "Stockholm, Sweden",
     summary:
       "Redesigned the dashboard and collaboration-room experience; contributed components and tokens back to the system.",
     achievements: [
@@ -47,8 +46,8 @@ export const experience = [
   {
     company: "CHEMX Education",
     role: "UI/UX Design Intern",
-    period: "2024",
-    location: "Remote",
+    period: "Feb 2024 — Aug 2024",
+    location: "Stockholm, Sweden",
     summary:
       "Redesigned the learner onboarding flow and shipped a scalable design system for the EdTech platform.",
     achievements: [
@@ -163,15 +162,9 @@ export const processSteps = [
 export const testimonials = [
   {
     quote:
-      "Stuti has the rare combination of strong visual taste and genuine product instincts. She made our dashboard feel calm without losing any of its power.",
-    name: "Engineering Lead",
-    role: "Pryvx",
-  },
-  {
-    quote:
-      "She rebuilt our design system from the ground up, and our handoff time dropped by days. Documentation is a craft, and she treats it like one.",
-    name: "Product Manager",
-    role: "LifeBonder",
+      "Stuti completed her internship at Grantigo as a UX/UI Designer. During her time with us, she demonstrated a positive attitude, strong engagement, and a willingness to contribute to the team. She worked well both independently and collaboratively, showed a sense of responsibility in her assignments, and approached her tasks with dedication and professionalism. We appreciate her contributions during her internship and wish her all the best in her future endeavors.",
+    name: "Fredrik Lundberg",
+    role: "CEO, Grantigo",
   },
   {
     quote:
